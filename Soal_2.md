@@ -1,3 +1,5 @@
+-- SOAL 2: OPERASI CRUD DASAR
+
 Langkah 1: CREATE
 
 INSERT INTO pengguna (id_pengguna, nama, role, status_aktif) VALUES

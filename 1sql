@@ -1,0 +1,34 @@
+-- =====================================================================
+-- SOAL 1: DATA DEFINITION & RELASI
+-- =====================================================================
+ 
+-- Tabel Induk 1: pengguna
+CREATE TABLE pengguna (
+    id_pengguna  VARCHAR(10)  NOT NULL,
+    nama         VARCHAR(100) NOT NULL,
+    role         VARCHAR(20)  NOT NULL,
+    status_aktif VARCHAR(10)  NOT NULL,
+    PRIMARY KEY (id_pengguna)
+) ENGINE=InnoDB;
+ 
+-- Tabel Induk 2: pintu
+CREATE TABLE pintu (
+    id_pintu     VARCHAR(10) NOT NULL,
+    status_pintu VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id_pintu)
+) ENGINE=InnoDB;
+ 
+-- Tabel Transaksi: log_akses (FK ke kedua tabel induk)
+CREATE TABLE log_akses (
+    id_akses     VARCHAR(10) NOT NULL,
+    waktu_akses  TIMESTAMP   NOT NULL,
+    status_akses VARCHAR(20) NOT NULL,
+    status_pintu VARCHAR(20) NOT NULL,
+    id_pengguna  VARCHAR(10) NOT NULL,
+    id_pintu     VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id_akses),
+    CONSTRAINT log_akses_ibfk_1 FOREIGN KEY (id_pengguna)
+        REFERENCES pengguna (id_pengguna),
+    CONSTRAINT log_akses_ibfk_2 FOREIGN KEY (id_pintu)
+        REFERENCES pintu (id_pintu)
+) ENGINE=InnoDB;
